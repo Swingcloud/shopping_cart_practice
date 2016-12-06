@@ -29,6 +29,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'mysql2'
 gem 'devise'
 gem 'bootstrap-sass', '~> 3.3.6'
+gem 'acts_as_list'
+gem 'faker'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

@@ -5,3 +5,21 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+categories = %w(Books Clothes 3C Groceries Food Music)
+
+categories.each do |name|
+	category= Category.create!(
+		name: :name, description: Faker::Lorem.sentences(rand(3..5)).join
+		)
+
+	rand(20..25).times do
+		category.products.create!(
+			name: Faker::Commerce.product_name,
+			description: Faker::Lorem.sentences(rand(4..5)).join,
+			content: Faker::Lorem.paragraphs(rand(10..12)).join("\n"),
+			price: Faker::Commerce.price * 100,
+			active: true
+			)
+	end
+end
