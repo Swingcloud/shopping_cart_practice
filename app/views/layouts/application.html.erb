@@ -24,8 +24,8 @@
   				<ul class="nav navbar-nav">
   					<li><%= link_to '首頁', root_path %></li>
   					<li><%#= link_to '購物車', cart_path %></li>
-  					<li><%#= link_to '關於本站', about_path %></li>
-  					<li><%#= link_to '聯絡我們', contact_path %></li>
+  					<li><%= link_to '關於本站', about_path %></li>
+  					<li><%= link_to '聯絡我們', contact_path %></li>
   					<% if user_signed_in? %>
   						<li><%#= link_to '我的訂單', orders_path %></li>
   						<li><%= link_to '登出', destroy_user_session_path, method: :delete %></li>
