@@ -31,6 +31,11 @@ gem 'devise'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'acts_as_list'
 gem 'faker'
+gem 'kaminari'
+gem 'kaminari-bootstrap', '~> 3.0.1'
+gem 'font-awesome-rails'
+gem 'sidekiq'
+gem 'ransack'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
