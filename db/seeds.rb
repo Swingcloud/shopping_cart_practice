@@ -22,7 +22,7 @@ categories.each do |name|
 	rand(20..25).times do
 		category.products.create!(
 			name: Faker::Commerce.product_name,
-			description: Faker::Lorem.sentences(rand(4..5)).join,
+			description: Faker::Lorem.sentences(rand(1..3)).join,
 			content: Faker::Lorem.paragraphs(rand(10..12)).join("\n"),
 			price: Faker::Commerce.price * 100,
 			active: true
