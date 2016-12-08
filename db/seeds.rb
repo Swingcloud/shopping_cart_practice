@@ -6,6 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+User.create!(
+	email: 'greenlin111@gmail.com',
+	password: 'password',
+	password_confirmation: 'password',
+	admin: true)
+
 categories = %w(Books Clothes 3C Groceries Food Music)
 
 categories.each do |name|
@@ -16,7 +22,7 @@ categories.each do |name|
 	rand(20..25).times do
 		category.products.create!(
 			name: Faker::Commerce.product_name,
-			description: Faker::Lorem.sentences(rand(4..5)).join,
+			description: Faker::Lorem.sentences(rand(1..3)).join,
 			content: Faker::Lorem.paragraphs(rand(10..12)).join("\n"),
 			price: Faker::Commerce.price * 100,
 			active: true
