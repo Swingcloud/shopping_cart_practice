@@ -3,7 +3,17 @@
 		<%= image_tag Faker::Placeholdit.image("640x640", "png", "333"),class: "pull-left img-responsive" %>
 	</div>
 	<div class="col-sm-6">
-		<h1><%= @product.name %></h1>
+		<h1>
+			<%= @product.name %>
+			<small>
+				<% if @viewed %>
+					<br>
+					你已經看過此商品囉！趕快購買吧！
+				<% else %>
+
+				<% end %>
+			</small>
+		</h1>
 		<p>Category: <%=link_to @product.category.name, category_path(@product.category) %></p>
 		<div class="product-description"><%= @product.description %></div>
 		<div class="product-price"><%= number_to_currency @product.price %></div>
