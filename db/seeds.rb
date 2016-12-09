@@ -20,12 +20,15 @@ categories.each do |name|
 		)
 
 	rand(20..25).times do
+		name = Faker::Commerce.product_name
+		friendly_id = name.downcase.to_param.gsub(' ','-')
 		category.products.create!(
-			name: Faker::Commerce.product_name,
+			name: name,
 			description: Faker::Lorem.sentences(rand(1..3)).join,
 			content: Faker::Lorem.paragraphs(rand(10..12)).join("\n"),
 			price: Faker::Commerce.price * 100,
 			active: true
+			friendly_id: friendly_id
 			)
 	end
 end
