@@ -2,7 +2,7 @@ class CategoryProductsController < ApplicationController
 	before_action :find_category
 
 	def show
-		@product = @category.products.where(active: true).find(params[:id])
+		@product = @category.products.where(active: true).find(params[:id].to_i)
 	end
 
 	private
