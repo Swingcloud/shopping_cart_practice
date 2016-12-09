@@ -24,7 +24,7 @@ class Admin::ProductsController < Admin::BaseController
 	def edit 
 	end
 
-	def upadate
+	def update
 		if @product.update(product_params_permitted)
 			redirect_to admin_product_path(@product), notice: 'Edited successfully!'
 		else 
@@ -44,6 +44,6 @@ class Admin::ProductsController < Admin::BaseController
 	end
 
 	def product_params_permitted
-		parmas.require(:product).permit(:name, :description, :content, :active, :price, :category_id)
+		params.require(:product).permit(:name, :description, :content, :active, :price, :category_id, :friendly_id)
 	end
 end
