@@ -10,7 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161209065107) do
+ActiveRecord::Schema.define(version: 20161210080636) do
+
+  create_table "cart_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+    t.integer  "item_id",                null: false
+    t.integer  "cart_id",                null: false
+    t.integer  "quantity",   default: 0, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["cart_id"], name: "index_cart_items_on_cart_id", using: :btree
+    t.index ["item_id"], name: "index_cart_items_on_item_id", using: :btree
+  end
+
+  create_table "carts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_carts_on_user_id", using: :btree
+  end
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string   "name"
@@ -32,6 +49,8 @@ ActiveRecord::Schema.define(version: 20161209065107) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.string   "friendly_id"
+    t.date     "shelved_on"
+    t.index ["category_id", "active", "shelved_on"], name: "index_products_on_category_id_and_active_and_shelved_on", using: :btree
     t.index ["category_id", "active"], name: "index_products_on_category_id_and_active", using: :btree
     t.index ["category_id"], name: "index_products_on_category_id", using: :btree
   end
