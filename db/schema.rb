@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161210080636) do
+ActiveRecord::Schema.define(version: 20161221064701) do
 
   create_table "cart_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.integer  "item_id",                null: false
@@ -33,10 +33,13 @@ ActiveRecord::Schema.define(version: 20161210080636) do
     t.string   "name"
     t.integer  "position"
     t.string   "description"
-    t.boolean  "enabled",     default: true
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.boolean  "enabled",        default: true
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.integer  "parent_id"
+    t.integer  "products_count", default: 0
     t.index ["enabled", "position"], name: "index_categories_on_enabled_and_position", using: :btree
+    t.index ["parent_id", "position", "enabled"], name: "index_categories_on_parent_id_and_position_and_enabled", using: :btree
   end
 
   create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|

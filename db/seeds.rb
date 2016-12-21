@@ -10,26 +10,35 @@ User.create!(
 	email: 'greenlin111@gmail.com',
 	password: 'password',
 	password_confirmation: 'password',
-	admin: true)
+	admin: true
+)
 
-categories = %w(Books Clothes 3C Groceries Food Music)
+categories = {
+	'Books' => ['Programming', 'Comics', 'Novel', 'Literature'],
+	'Clothes' => ['Hat', 'Pants', 'Coat', 'Jacket', 'Shoes'],
+	'3C' => ['Computer', 'Mobile Phone', 'TV', 'Laptop', 'Tablet'],
+	'Groceries' => ['Stationery', 'Tools', 'Doll', 'Toys'],
+	'Food' => ['Noodle', 'Rice', 'Drinks', 'Vegetable']
+}
 
-categories.each do |name|
+categories.each do |name, subs|
 	category= Category.create!(
-		name: :name, description: Faker::Lorem.sentences(rand(3..5)).join
+		name: name, description: Faker::Lorem.sentences(rand(3..5)).join
+	)
+	
+	subs.each do |subname| 
+		subcategory = category.children.create!(name: subname, description: Faker::Lorem.sentences(rand(1..2)).join
 		)
 
-	rand(20..25).times do
-		name = Faker::Commerce.product_name
-		friendly_id = name.downcase.to_param.gsub(' ','-')
-		category.products.create!(
-			name: name,
-			description: Faker::Lorem.sentences(rand(1..3)).join,
-			content: Faker::Lorem.paragraphs(rand(10..12)).join("\n"),
-			price: Faker::Commerce.price * 100,
-			active: true,
-			friendly_id: friendly_id,
-			shelved_on: Date.current
+		rand(20..25).times do
+			subcategory.products.create!(
+				name: Faker::Commerce.product_name,
+				description: Faker::Lorem.sentences(rand(1..2)).join,
+				content: Faker::Lorem.paragraphs(rand(5..8)).join("\n"),
+				price: Faker::Commerce.price * 30,
+				active: true,
+				shelved_on: Date.current
 			)
+		end
 	end
 end

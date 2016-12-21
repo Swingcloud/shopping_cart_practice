@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
-	belongs_to :category
+	belongs_to :category, counter_cache: true
 	has_many :cart_items, foreign_key: 'item_id', dependent: :destroy
 	has_many :carts, through: :cart_items
 
