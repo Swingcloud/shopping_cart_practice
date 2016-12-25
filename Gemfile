@@ -36,6 +36,7 @@ gem 'kaminari-bootstrap', '~> 3.0.1'
 gem 'font-awesome-rails'
 gem 'sidekiq'
 gem 'ransack'
+gem 'nested_form_fields'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
