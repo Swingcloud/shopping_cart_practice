@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161226005050) do
+ActiveRecord::Schema.define(version: 20161226063437) do
 
   create_table "cart_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.integer  "item_id",                null: false
@@ -88,9 +88,25 @@ ActiveRecord::Schema.define(version: 20161226005050) do
     t.datetime "updated_at",                null: false
     t.string   "friendly_id"
     t.date     "shelved_on"
+    t.integer  "provider_id"
     t.index ["category_id", "active", "shelved_on"], name: "index_products_on_category_id_and_active_and_shelved_on", using: :btree
     t.index ["category_id", "active"], name: "index_products_on_category_id_and_active", using: :btree
     t.index ["category_id"], name: "index_products_on_category_id", using: :btree
+    t.index ["provider_id"], name: "index_products_on_provider_id", using: :btree
+  end
+
+  create_table "providers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+    t.string   "type"
+    t.string   "name"
+    t.string   "contact"
+    t.string   "telephone"
+    t.string   "country"
+    t.string   "state"
+    t.string   "city"
+    t.string   "street"
+    t.string   "zip_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
