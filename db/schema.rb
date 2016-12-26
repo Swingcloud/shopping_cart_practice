@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161221065836) do
+ActiveRecord::Schema.define(version: 20161226005050) do
 
   create_table "cart_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.integer  "item_id",                null: false
@@ -40,6 +40,18 @@ ActiveRecord::Schema.define(version: 20161221065836) do
     t.integer  "products_count", default: 0
     t.index ["enabled", "position"], name: "index_categories_on_enabled_and_position", using: :btree
     t.index ["parent_id", "position", "enabled"], name: "index_categories_on_parent_id_and_position_and_enabled", using: :btree
+  end
+
+  create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+    t.integer  "user_id"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.string   "name"
+    t.text     "content",          limit: 65535
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.index ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type", using: :btree
+    t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
   end
 
   create_table "order_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|

@@ -3,6 +3,7 @@ class Category < ApplicationRecord
 	has_many :children, class_name: 'Category', foreign_key: 'parent_id', dependent: :destroy
 	belongs_to :parent, class_name: 'Category'
 	validates_presence_of :name
+	has_many :comments, as: :commentable
 	acts_as_list scope: :parent
 
 	scope :enabled, ->{ where(enabled: true)}
