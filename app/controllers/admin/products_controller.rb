@@ -2,7 +2,7 @@ class Admin::ProductsController < Admin::BaseController
 	before_action :find_product, only: %i(show edit update destroy)
 
 	def index
-		@products = Product.includes(:category).page(params[:page])
+		@products = Product.includes(:category, :provider).page(params[:page])
 	end
 
 	def new
@@ -44,6 +44,6 @@ class Admin::ProductsController < Admin::BaseController
 	end
 
 	def product_params_permitted
-		params.require(:product).permit(:name, :description, :content, :active, :price, :category_id, :friendly_id, :shelved_on)
+		params.require(:product).permit(:name, :description, :content, :active, :price, :category_id,:provider_id , :friendly_id, :shelved_on)
 	end
 end
