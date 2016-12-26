@@ -2,7 +2,7 @@ class Admin::ProductsController < Admin::BaseController
 	before_action :find_product, only: %i(show edit update destroy)
 
 	def index
-		@products = Product.page(params[:page])
+		@products = Product.includes(:category).page(params[:page])
 	end
 
 	def new

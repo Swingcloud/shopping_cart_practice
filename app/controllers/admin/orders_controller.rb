@@ -5,7 +5,7 @@ class Admin::OrdersController < Admin::BaseController
 	end
 
 	def show
-		
+		@order_items = @order.order_items.includes(:product)
 	end
 
 	def edit 
