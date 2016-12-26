@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       post 'add', on: :member
       resources :comments, controller: 'product_comments', only: :create
     end
+    resources :comments, controller: 'category_comments', only: :create
   end
   resource :cart
   get '/about' => 'pages#about'
