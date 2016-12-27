@@ -37,6 +37,12 @@ class Admin::ProductsController < Admin::BaseController
 		redirect_to admin_products_path, alert: 'Product was deleted successfully!'
 	end
 
+
+	def export
+		ExportProductJob.perform_later(current_user.email)
+		redirect_back fallback_location: admin_products_path, notice: 'Export job had been started, please wait a moment.'
+	end
+
 	private
 
 	def find_product

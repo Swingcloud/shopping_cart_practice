@@ -1,6 +1,7 @@
 <h1>產品管理</h1>
 
 <%= link_to '新增產品' , new_admin_product_path, class: 'btn btn-default' %>
+<%= link_to '下載產品清單', export_admin_products_path, method: :post, class: 'btn btn-default' %>
 
 <table class="table">
 	<thead>
