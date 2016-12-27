@@ -16,7 +16,9 @@ Rails.application.routes.draw do
   	root 'index#index'
   	resources :categories
   	resources :users
-  	resources :products
+  	resources :products do 
+      post 'export', on: :collection
+    end
     resources :orders, except: %i(new create)
   end
   require 'sidekiq/web'
